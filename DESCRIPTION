@@ -1,0 +1,19 @@
+Package: fusionchartsR
+Title: Embedding 'FusionCharts' javascript library in R
+Version: 0.0.1.0000
+Authors@R: 
+    person(given = "Alex",
+           family = "Yahiaoui Martinez",
+           role = c("aut", "cre"),
+           email = "yahiaoui-martinez.alex@outlook.com")
+Description: Beautiful web and mobile interactive charts
+License: MIT + Licence
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Imports: htmlwidgets, jsonlite, magrittr
+Suggests: 
+    rmarkdown,
+    knitr,
+    shiny,
+    testthat
