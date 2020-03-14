@@ -36,7 +36,8 @@ ui <- fluidPage(
       selectInput(
         inputId = "input01", 
         label = "Select a type chart", 
-        choices = c("column2d","column3d", "line", "area2d", "bar2d", "bar3d", "pie2d", "pie3d", "doughnut2d", "doughnut3d")
+        choices = c("column2d","column3d", "line", "area2d", "bar2d", "bar3d", "pie2d", "pie3d", 
+        "doughnut2d", "doughnut3d")
         ),
       textInput(
         inputId = "input02", 
