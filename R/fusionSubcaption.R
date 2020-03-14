@@ -37,8 +37,5 @@ fusionSubcaption <- function(fusionPlot, subcaption = "Add a subCaption here", s
   fusionPlot$x$subcaptionFontColor <- SubcaptionAttrs$subcaptionFontColor
   fusionPlot$x$subcaptionFontBold <- SubcaptionAttrs$subcaptionFontBold
   
-  # merge SubcaptionAttrs  with existing attrs in fusionPlot
-  fusionPlot$x$attrs <- mergeLists(fusionPlot$x$attrs, SubcaptionAttrs )
-  
   return(fusionPlot)
 }
