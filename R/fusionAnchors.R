@@ -27,7 +27,7 @@
 #'   fusionTheme(theme = "fusion")
 #'
 #' @export
-fusionAnchors <- function(fusionPlot, drawAnchors = TRUE, anchorSides =  "0", anchorRadius = "3", anchorAlpha = "100", anchorBorderThickness = "1", 
+fusionAnchors <- function(fusionPlot, drawAnchors = TRUE, showvalues = FALSE, anchorSides =  "0", anchorRadius = "3", anchorAlpha = "100", anchorBorderThickness = "1", 
                           anchorBorderColor = "#5a5a5a", anchorBgColor = "#ffffff", anchorBgAlpha = "100", anchorImageAlpha = "100", anchorImageScale = "150") {
   AnchorsAttrs <- list()
   AnchorsAttrs$drawAnchors <- as.numeric(drawAnchors)
