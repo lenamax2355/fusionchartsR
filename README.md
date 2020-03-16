@@ -1,4 +1,4 @@
-![](https://github.com/alexym1/fusionchartsR/blob/master/fusionchartsR.PNG)
+![](https://github.com/alexym1/fusionchartsR/blob/master/man/figure/fusionchartsR.PNG)
 
 ---
 
