@@ -205,7 +205,6 @@ HTMLWidgets.widget({
           
           // fusionAnchors()
           "drawAnchors": x.drawAnchors,
-          "showvalues": x.showvalues,
           "anchorSides": x.anchorSides,
           "anchorRadius": x.anchorRadius,
           "anchorAlpha": x.anchorAlpha,
