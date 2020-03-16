@@ -36,7 +36,6 @@
 #'
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
 #' fusionPlot(data = df, type = "doughnut2d") %>%
-#'   fusionLegend(legendCaption = "LegendCaption", legendCaptionFontSize = "24", legendCaptionFontColor = "#000000") %>%
 #'   fusionCustomLegend(plotHighlightEffect = TRUE) %>%
 #'   fusionTheme(theme = "fusion")
 #'
