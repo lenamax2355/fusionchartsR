@@ -9,7 +9,6 @@
 #' @param adjustDiv Enable the automatic adjustment of horizontal lines
 #' @param numDivLines Set the number of hozitontal lines
 #' @param divLineColor Specify the hex code for the color of the hozitontal lines
-#' @param divLineThickness Set the thickness of the horizontal hozitontal lines
 #' @param divLineAlpha Set the transparency of the horizontal lines
 #' @param divLineDashed Display the hozitontal lines as dashed
 #' @param divLineDashLen Set the length of each dashed hozitontal lines
