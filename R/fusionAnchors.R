@@ -6,6 +6,7 @@
 #'
 #' @param fusionPlot fusionPlot object got by \code{fusionPlot()}
 #' @param drawAnchors Show the anchors
+#' @param showvalues Show the values of the anchors
 #' @param anchorSides Specify the number of sides to define the shape of the anchor
 #' @param anchorRadius Set the radius of the anchor
 #' @param anchorAlpha Set the transparency of the anchor
