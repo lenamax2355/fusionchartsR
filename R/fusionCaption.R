@@ -11,7 +11,7 @@
 #' @param captionFontColor Set the caption font color
 #' @param captionFontBold Enable caption font to bold
 #' @param captionOnTop Display the caption at the top of the chart
-#' @param captionAlignement Specify the horizontal alignment of the caption
+#' @param captionAlignment Specify the horizontal alignment of the caption
 #' 
 #' @examples
 #' library(fusionchartsR)
