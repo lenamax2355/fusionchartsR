@@ -13,7 +13,6 @@
 #' @param canvasBgRatioStart Set the first value of the canvas background ratio (in percentage)
 #' @param canvasBgRatioEnd Set the second value of the canvas background ratio (in percentage)
 #' @param canvasBgAngle Specify canvas background angle (in degrees)
-#' @param showAlternateHGridColor Show alternative grid color
 #' @param showCanvasBorder Show the canvas border
 #' @param canvasBorderColor Set the border color
 #' @param canvasBorderAlpha Set the transparency of the border
