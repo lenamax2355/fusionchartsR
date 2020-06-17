@@ -39,7 +39,7 @@
 #'
 #' @export
 fusionTrendline <- function(fusionPlot, isTrendZone = FALSE, displayValue = NULL, startValue = NULL, endValue = NULL, color = "#000000", 
-                            thickness = 2, alpha = "60", valueOnRight = TRUE, showOnTop = TRUE, trendValueFont = "Arial", trendValueFontSize = "12",
+                            thickness = 2, alpha = "60", valueOnRight = TRUE, trendValueFont = "Arial", trendValueFontSize = "12",
                             trendValueFontBold = TRUE, trendValueFontItalic = FALSE, trendValueAlpha = "80", trendValueBgColor = "#000000", trendValueBgAlpha =  "10", 
                             trendValueBorderColor = "#000000", trendValueBorderAlpha = "80", trendValueBorderPadding = "4", trendValueBorderRadius = "5", trendValueBorderThickness = "2", trendValueBorderDashed = FALSE, 
                             trendValueBorderDashLen = "#5A5A5A", trendValueBorderDashGap = "1"){
