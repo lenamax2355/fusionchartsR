@@ -1,6 +1,6 @@
 Package: fusionchartsR
-Title: Embedding 'FusionCharts' javascript library in R
-Version: 0.0.1.0000
+Title: Embedding 'FusionCharts' Javascript Library in R
+Version: 0.0.1
 Authors@R: 
     person(given = "Alex",
            family = "Yahiaoui Martinez",
