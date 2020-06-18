@@ -6,7 +6,7 @@ Embedding 'FusionCharts' javascript library in R
 
 ---
 
-## fusionchartR - Version: 0.0.1.0000
+## fusionchartR - Version: 0.0.1
 
 Basic components to make charts were added
 
@@ -14,7 +14,7 @@ Basic components to make charts were added
 - Adding multiple chart types (stacked column charts, boxplot ...)
 - Adding more features
 
-## Current updates - Version: 0.0.1.0000 
+## Current updates - Version: 0.0.1
 - All functions can be used independently.
 - `fusionTheme()` has been fixed. All themes works.
 
