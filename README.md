@@ -2,7 +2,7 @@
 
 ---
 
-Embedding 'FusionCharts' javascript library in R
+Embedding 'FusionCharts' Javascript Library in R
 
 ---
 
