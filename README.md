@@ -16,7 +16,7 @@ Basic components to make charts were added
 
 ## Current updates - Version: 0.0.1
 - All functions can be used independently.
-- `fusionTheme()` has been fixed. All themes works.
+- `fusionTheme()` has been fixed. All themes work.
 
 ## Installation
 
