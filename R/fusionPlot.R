@@ -21,6 +21,14 @@ fusionPlot <- function(data, type = "column2d", width = "100%", height = "100%",
     stop("Provide non empty data")
   }
   
+    if(ncol(data) > 2){
+    stop("Provide dataset with only two columns")
+  }
+  else {
+    names(data)[1] <- ifelse(class(data[,1]) == "character", yes = "label", no = "value")
+    names(data)[2] <- ifelse(class(data[,2]) == "character", yes = "label", no = "value")
+  }
+  
   if(type %in% singleSeriesChart){
     data <- jsonlite::toJSON(x = data, pretty = TRUE)
   } 
