@@ -20,8 +20,17 @@ Basic components to make charts were added
 
 ## Installation
 
-- CRAN: `install.package("fusionchartsR")`
-- GitHub: `devtools::install_github("alexym1/fusionchartsR")`
+The `fusionchartsR` package can be installed from CRAN as follows:
+
+```{r eval = FALSE}
+install.packages("fusionchartsR")
+```
+
+The latest version can be installed from GitHub as follows: 
+
+```{r eval = FALSE}
+install.packages("devtools")
+devtools::install_github("alexym1/fusionchartsR")`
 
 ## Example
 
