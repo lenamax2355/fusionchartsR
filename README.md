@@ -1,4 +1,4 @@
-# fusionchartsR <a <img src='fusionchartsR_logo.png' align="right" height="139" /></a>
+# fusionchartsR <a href=#><img src='fusionchartsR_logo.png' align="right" height="139" /></a>
 
 [![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
 [![](https://cranlogs.r-pkg.org/badges/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
