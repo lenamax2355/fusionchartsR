@@ -1,22 +1,8 @@
-![](https://github.com/alexym1/fusionChartsR/blob/master/man/figures/fusionchartsR.PNG)
+# fusionchartsR <a <img src='fusionchartsR_logo.png' align="right" height="139" /></a>
 
----
-
-Embedding 'FusionCharts' Javascript Library in R
-
----
-
-## fusionchartR - Version: 0.0.1
-
-Basic components to make charts were added
-
-**Next updates**
-- Adding multiple chart types (stacked column charts, boxplot ...)
-- Adding more features
-
-## Current updates - Version: 0.0.1
-- All functions can be used independently.
-- `fusionTheme()` has been fixed. All themes work.
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
+[![](https://cranlogs.r-pkg.org/badges/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
+[![](https://img.shields.io/badge/github%20version-3.11.5-orange.svg)]
 
 ## Installation
 
