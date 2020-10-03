@@ -31,6 +31,7 @@ The latest version can be installed from GitHub as follows:
 ```{r eval = FALSE}
 install.packages("devtools")
 devtools::install_github("alexym1/fusionchartsR")`
+```
 
 ## Example
 
