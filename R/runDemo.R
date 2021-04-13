@@ -12,7 +12,6 @@
 #'
 #' @export
 runDemo <- function(){
-  library(shiny)
   ui <- fluidPage(
     tags$br(),
     sidebarLayout(
