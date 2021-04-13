@@ -31,11 +31,11 @@
 #' 
 #' @examples
 #' library(fusionchartsR)
-#' 
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-#' fusionPlot(data = df, type = "column2d") %>%
-#'   fusionTrendline(displayValue = "Help", startValue = "100") %>%
-#'   fusionTheme(theme = "candy")
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "column2d") %>%
+#' fusionTrendline(displayValue = "Help", startValue = "100") %>%
+#' fusionTheme(theme = "candy")
 #'
 #' @export
 fusionTrendline <- function(fusionPlot, isTrendZone = FALSE, displayValue = NULL, startValue = NULL, endValue = NULL, color = "#000000", 
