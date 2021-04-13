@@ -3,7 +3,7 @@
 #' Running Shiny App 
 #'
 #' @import htmlwidgets
-#'
+#' @import shiny
 #' 
 #' @examples
 #' library(fusionchartsR)
