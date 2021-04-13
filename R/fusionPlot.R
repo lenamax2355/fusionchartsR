@@ -1,7 +1,7 @@
 #' Create new charts
 #'
 #' Main function to make interactive charts
-#'
+#' Check all charts at \url{https://www.fusioncharts.com/charts}
 #'
 #' @import htmlwidgets
 #' @import jsonlite
