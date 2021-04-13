@@ -13,12 +13,12 @@
 #' 
 #' @examples
 #' library(fusionchartsR)
-#' 
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
 #' logoURL <- "https://static.fusioncharts.com/sampledata/images/Logo-HM-72x72.png"
-#' fusionPlot(data = df, type = "line") %>%
-#'   fusionLogo(logoURL = logoURL) %>%
-#'   fusionTheme(theme = "fusion")
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "doughnut2d") %>%
+#' fusionLogo(logoURL = logoURL) %>%
+#' fusionTheme(theme = "fusion")
 #'
 #' @export
 fusionLogo <- function(fusionPlot, logoURL = "NULL", logoAlpha = "40", logoScale = "80", logoPosition = c("TL", "TR", "BL", "BR", "CC"),
