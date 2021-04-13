@@ -16,16 +16,29 @@ HTMLWidgets.widget({
     var fusioncharts = new FusionCharts({
     type: x.type,
     renderAt: el,
-    width: x.width,
-    height: x.height,
+    width: "100%",
+    height: "100%",
     dataFormat: 'json',
     dataSource: {
         // Chart Configuration
         "chart": {
           // fusionPlot()
           "numberSuffix": x.numberSuffix,
-          "exportEnabled": x.exportEnabled,
-          
+          "drawcrossline": x.drawcrossline,
+
+          "mediancolor": "#FFFFFF",
+          "showmean": x.showmean,
+          "meaniconshape": "polygon",
+          "meaniconsides": "2",
+          "meaniconsides": "2",
+          "meaniconradius": "2",
+
+          "showalloutliers": x.showalloutliers,
+          "outliericonsides": "20",
+          "outliericonalpha": "40",
+          "outliericonshape": "triangle",
+          "outliericonsradius": "4",
+
           // fusionCaption()
           "caption": x.caption,
           "captionFont": x.captionFont,
@@ -34,14 +47,14 @@ HTMLWidgets.widget({
           "captionFontBold": x.captionFontBold,
           "captionAlignment": x.captionAlignment,
           "captionOnTop": x.captionOnTop,
-          
+
           // fusionSubcaption()
           "subCaption": x.subCaption,
           "subcaptionFont": x.subcaptionFont,
           "subcaptionFontSize": x.subcaptionFontSize,
           "subcaptionFontColor": x.subcaptionFontColor,
           "subcaptionFontBold": x.subcaptionFontBold,
-          
+
           // fusionBackground()
           "showBorder": x.showBorder,
           "borderColor": x.borderColor,
@@ -51,7 +64,7 @@ HTMLWidgets.widget({
           "bgAlpha": x.bgAlpha,
           "bgratio": x.bgratio,
           "bgAngle": x.bgAngle,
-            
+
           // fusionCanvas()
           "showCanvasBg": x.showCanvasBg,
           "canvasbgColor": x.canvasbgColor,
@@ -62,11 +75,11 @@ HTMLWidgets.widget({
           "showCanvasBorder": x.showCanvasBorder,
           "canvasBorderColor": x.canvasBorderColor,
           "canvasBorderAlpha": x.canvasBorderAlpha,
-          "canvasBorderThickness": x.canvasBorderThickness, 
+          "canvasBorderThickness": x.canvasBorderThickness,
           "showCanvasBase": x.showCanvasBase,
           "canvasBaseDepth": x.canvasBaseDepth,
           "canvasBaseColor": x.canvasBaseColor,
-          
+
            // fusionAxis()
           "xAxisName": x.xAxisName,
           "xAxisNameFont": x.xAxisNameFont,
@@ -80,8 +93,9 @@ HTMLWidgets.widget({
           "yAxisNameFontColor": x.yAxisNameFontColor,
           "yAxisNameFontBold": x.yAxisNameFontBold,
           "yAxisNameFontItalic": x.yAxisNameFontItalic,
-          
+
           //fusionCustomAxis()
+          "showlabels": x.showlabels,
           "xAxisPosition": x.xAxisPosition,
           "xAxisNameBorderColor": x.xAxisNameBorderColor,
           "xAxisNameBorderAlpha": x.xAxisNameBorderAlpha,
@@ -110,7 +124,7 @@ HTMLWidgets.widget({
           "xAxisValueBorderDashed": x.xAxisValueBorderDashed,
           "xAxisValueBorderDashLen": x.xAxisValueBorderDashLen,
           "xAxisValueBorderDashGap": x.xAxisValueBorderDashGap,
-          
+
           "yAxisPosition": x.yAxisPosition,
           "yAxisNameBorderColor": x.yAxisNameBorderColor,
           "yAxisNameBorderAlpha": x.yAxisNameBorderAlpha,
@@ -139,7 +153,7 @@ HTMLWidgets.widget({
           "yAxisValueBorderDashed": x.yAxisValueBorderDashed,
           "yAxisValueBorderDashLen": x.yAxisValueBorderDashLen,
           "yAxisValueBorderDashGap": x.yAxisValueBorderDashGap,
-          
+
            // fusionLegend()
           "showLegend": x.showLegend,
           "interactiveLegend": x.interactiveLegend,
@@ -152,31 +166,31 @@ HTMLWidgets.widget({
           "legendCaptionFont": x.legendCaptionFont,
           "legendCaptionFontSize": x.legendCaptionFontSize,
           "legendCaptionFontColor": x.legendCaptionFontColor,
-          
-          //fusionCustomLegend()
+
+          // fusionCustomLegend()
           "plotHighlightEffect": x.plotHighlightEffect,
-          "drawCustomLegendIcon": x.drawCustomLegendIcon, 
-          "legendIconBgColor": x.legendIconBgColor, 
-          "legendIconAlpha": x.legendIconAlpha, 
+          "drawCustomLegendIcon": x.drawCustomLegendIcon,
+          "legendIconBgColor": x.legendIconBgColor,
+          "legendIconAlpha": x.legendIconAlpha,
           "legendIconBgAlpha": x.legendIconBgAlpha,
-          "legendIconBorderColor": x.legendIconBorderColor, 
-          "legendIconBorderThickness": x.legendIconBorderThickness, 
-          "legendIconSides": x.legendIconSides, 
+          "legendIconBorderColor": x.legendIconBorderColor,
+          "legendIconBorderThickness": x.legendIconBorderThickness,
+          "legendIconSides": x.legendIconSides,
           "legendIconStartAngle": x.legendIconStartAngle,
           "legendScrollBgColor": x.legendScrollBgColor,
-          "legendBgColor": x.legendBgColor, 
+          "legendBgColor": x.legendBgColor,
           "legendBgAlpha": x.legendBgAlpha,
           "legendBorderColor": x.legendBorderColor,
           "legendBorderThickness": x.legendBorderThickness,
-          "legendBorderAlpha": x.legendBorderAlpha, 
+          "legendBorderAlpha": x.legendBorderAlpha,
           "legendCaptionAlignment": x.legendCaptionAlignment,
           "legendShadow": x.legendShadow,
           "legendItemFontBold": x.legendItemFontBold,
-          "legendItemFont": x.legendItemFont, 
+          "legendItemFont": x.legendItemFont,
           "legendItemFontSize": x.legendItemFontSize,
           "legendItemFontColor": x.legendItemFontColor,
           "legendItemHoverFontColor": x.legendItemHoverFontColor,
-          
+
           // fusionPalette()
           "palettecolors": x.palettecolors,
           "usePlotGradientColor": x.usePlotGradientColor,
@@ -202,7 +216,7 @@ HTMLWidgets.widget({
           "plotBorderHoverDashed": x.plotBorderHoverDashed,
           "plotBorderHoverDashLen": x.plotBorderHoverDashLen,
           "plotBorderHoverDashGap": x.plotBorderHoverDashGap,
-          
+
           // fusionAnchors()
           "drawAnchors": x.drawAnchors,
           "showvalues": x.showvalues,
@@ -222,12 +236,12 @@ HTMLWidgets.widget({
           "toolTipBgColor": x.toolTipBgColor,
           "toolTipBgAlpha": x.toolTipBgAlpha,
           "showToolTipShadow": x.showToolTipShadow,
-          
+
           // fusionTheme()
           "theme": x.theme,
-          
+
           // fusionTrendline()
-          "trendValueFont": x.trendValueFont, 
+          "trendValueFont": x.trendValueFont,
           "trendValueFontSize": x.trendValueFontSize,
           "trendValueFontBold": x.trendValueFontBold,
           "trendValueFontItalic": x.trendValueFontItalic,
@@ -242,14 +256,14 @@ HTMLWidgets.widget({
           "trendValueBorderDashed": x.trendValueBorderDashed,
           "trendValueBorderDashLen": x.trendValueBorderDashLen,
           "trendValueBorderDashGap": x.trendValueBorderDashGap,
-          
+
           // fusionLogo()
           "logoURL": x.logoURL,
           "logoAlpha": x.logoAlpha,
           "logoScale": x.logoScale,
           "logoPosition": x.logoPosition,
           "logoLink": x.logoLink,
-            
+
           // fusionDiv()
           "adjustDiv": x.adjustDiv,
           "numDivLines": x.numDivLines,
@@ -273,9 +287,16 @@ HTMLWidgets.widget({
           "alternateVGridAlpha": x.alternateVGridAlpha
 
         },
-        // Chart Data
+        // Simple Charts
         "data": x.data,
-        
+
+        // Multiple Charts Data
+        "categories": [
+          x.categories
+        ],
+
+        "dataset": x.dataset,
+
         // fusionTrendline()
         "trendlines": [{
           "line": [{
