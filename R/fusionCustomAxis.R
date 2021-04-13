@@ -5,6 +5,7 @@
 #' @import htmlwidgets
 #' 
 #' @param fusionPlot fusionPlot object got by \code{fusionPlot()}
+#' @param showlabels Display the data labels
 #' @param xAxisPosition change the position of the x-axis
 #' @param yAxisPosition change the position of the y-axis
 #' @param AxisNameBorderColor Set the border color of the name of the axis
@@ -38,15 +39,15 @@
 #' 
 #' @examples
 #' library(fusionchartsR)
-#' 
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-#' fusionPlot(data = df, type = "column3d") %>%
-#'   fusionAxis(xAxisName = "Countries", yAxisName = "Numbers", AxisNameFontSize = "20") %>%
-#'   fusionCustomAxis(xAxisPosition = "top", yAxisPosition = "right") %>%
-#'   fusionTheme(theme = "gammel")
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "column3d") %>%
+#' fusionAxis(xAxisName = "Countries", yAxisName = "Numbers", AxisNameFontSize = "20") %>%
+#' fusionCustomAxis(xAxisPosition = "top", yAxisPosition = "right") %>%
+#' fusionTheme(theme = "gammel")
 #'
 #' @export
-fusionCustomAxis <- function(fusionPlot, xAxisPosition = c("bottom", "top", "left", "right"), yAxisPosition = c("left", "right", "top", "bottom"),
+fusionCustomAxis <- function(fusionPlot, showlabels = TRUE, xAxisPosition = c("bottom", "top", "left", "right"), yAxisPosition = c("left", "right", "top", "bottom"),
                              AxisNameBorderColor = NULL, AxisNameBorderAlpha = "0", AxisNameBorderPadding = "6", AxisNameBorderRadius = "3",
                              AxisNameBorderThickness = "2", AxisNameBorderDashed = FALSE, AxisNameBorderDashLen = "4", AxisNameBorderDashGap = "2",
                              AxisNameBgColor = NULL, AxisNameBgAlpha = "0", AxisNameFontAlpha = "100", AxisValueFont = "Arial", AxisValueFontSize = "1px", 
@@ -56,6 +57,7 @@ fusionCustomAxis <- function(fusionPlot, xAxisPosition = c("bottom", "top", "lef
                              AxisValueBorderDashGap =  "2"){
   
   CustomAxisAttrs <- list()
+  CustomAxisAttrs$showlabels <- as.numeric(showlabels)
   CustomAxisAttrs$xAxisPosition <- match.arg(xAxisPosition)
   
   if(is.null(AxisNameBorderColor)){
@@ -173,6 +175,7 @@ fusionCustomAxis <- function(fusionPlot, xAxisPosition = c("bottom", "top", "lef
   CustomAxisAttrs$yAxisValueBorderDashGap <- AxisValueBorderDashGap
   
   
+  fusionPlot$x$showlabels <- CustomAxisAttrs$showlabels
   fusionPlot$x$xAxisPosition <- CustomAxisAttrs$xAxisPosition
   fusionPlot$x$xAxisNameBorderColor <- CustomAxisAttrs$xAxisNameBorderColor
   fusionPlot$x$xAxisNameBorderAlpha <-  CustomAxisAttrs$xAxisNameBorderAlpha
