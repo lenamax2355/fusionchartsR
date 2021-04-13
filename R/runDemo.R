@@ -50,7 +50,7 @@ runDemo <- function(){
         )
       ),
       mainPanel(
-        fusionPlotOutput(outputId = "plot", width = "100%", height = "500px")
+        fusionPlotOutput(outputId = "plot")
       )
     )
   )
@@ -58,7 +58,8 @@ runDemo <- function(){
   server <- function(input, output, session){
     output$plot <- renderfusionPlot({
       df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-      fusionPlot(data = df, type = input$input01) %>%
+      df %>%
+      fusionPlot(x = "label", y = "value", type = input$input01) %>%
         fusionCaption(caption = input$input02) %>%
         fusionSubcaption(subcaption = input$input03) %>%
         fusionAxis(xAxisName = input$input04, yAxisName = input$input05) %>%
@@ -68,3 +69,5 @@ runDemo <- function(){
   
   shinyApp(ui = ui, server = server)
 }
+
+runDemo()
