@@ -2,82 +2,201 @@
 #'
 #' Main function to make interactive charts
 #'
+#'
 #' @import htmlwidgets
 #' @import jsonlite
 #'
+#'
 #' @param data Default dataset to use
-#' @param type Chart type. Available charts can be found at \url{https://www.fusioncharts.com/dev/chart-guide/list-of-charts}
+#' @param x,y character name of variable
+#' @param col character name of color variable (only available to Multiple chart)
+#' @param type See details.
 #' @param width,height Size of the chart. Must be a valid CSS unit (like \code{'100\%'}, \code{'400px'}, \code{'600'})
 #' @param numberSuffix Specify the suffix for all the Y-axis values on the chart
-#' @param exportEnabled Enable chart exporting
-#' 
+#'
 #'
 #' @export
-fusionPlot <- function(data, type = "column2d", width = "100%", height = "100%", numberSuffix = NULL, exportEnabled = FALSE) {
-  
-  singleSeriesChart <- c("column2d", "column3d", "line", "area2d", "bar2d", "bar3d", "pie2d", "pie3d", "doughnut2d", "doughnut3d")
-  
-  if(is.null(data)){
-    stop("Provide non empty data")
-  }
-  
-    if(ncol(data) > 2){
-    stop("Provide dataset with only two columns")
-  }
-  else {
-    names(data)[1] <- ifelse(class(data[,1]) == "character", yes = "label", no = "value")
-    names(data)[2] <- ifelse(class(data[,2]) == "character", yes = "label", no = "value")
-  }
-  
+fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = NULL) {
+
+  # Roc curve & Survival curve => msstepline !
+
+  # scatter => scatter
+
+  singleSeriesChart <- c(
+    "column2d",
+    "column3d",
+    "line",
+    "area2d",
+    "bar2d",
+    "bar3d",
+    "pie2d",
+    "pie3d",
+    "doughnut2d",
+    "doughnut3d",
+    "pareto2d",
+    "funnel"
+    )
+
+  multipleSeriesChart <- c(
+    "mscolumn2d",
+    "stackedcolumn2d",
+    "mscolumn3d",
+    "stackedcolumn3d",
+    "msline",
+    "mssplinearea",
+    "msbar2d",
+    "stackedbar2d",
+    "msbar3d",
+    "stackedbar3d",
+    "overlappedcolumn2d"
+  )
+
+
   if(type %in% singleSeriesChart){
-    data <- jsonlite::toJSON(x = data, pretty = TRUE)
-  } 
-  else {
-    stop('Please select one of the following chartType: "column2d", "column3d", "line", "area2d", "bar2d", "bar3d", "pie2d", "pie3d", "doughnut2d", "doughnut3d"')
+
+    # Canceled Multiple series charts components
+    drawcrossline <- "0"
+    category <- NULL
+    dataset <- NULL
+    showmean <- "0"
+    showalloutliers <- NULL
+
+    new.data <- data.frame(
+      label = factor(data[,x]),
+      value = data[,y]
+    )
+
+    data <- toJSON(x = new.data, pretty = TRUE)
+
   }
-  
+  else if(type %in% multipleSeriesChart) {
+
+    # Activated components
+    drawcrossline <-  "1"
+    showmean <- "0"
+    showalloutliers <- NULL
+
+    # X-axis values
+    xaxis <- factor(data[,x])
+    df <- list(
+      category = data.frame(
+        label = as.character(levels(xaxis))
+      )
+    )
+
+    category <- toJSON(x = df, pretty = TRUE)
+
+    n <- levels(factor(data[,col]))
+    df.list <- lapply(1:length(n), function(x){
+      list(
+        seriesname = n[x],
+        data = data.frame(
+          value = as.character(data[data[,col] == n[x],y])
+        )
+      )
+    })
+
+    dataset <- toJSON(x = df.list, pretty = TRUE, auto_unbox = TRUE)
+
+  }
+  else if(type == "boxandwhisker2d" & is.null(col)){
+
+    showmean <- "1"
+    drawcrossline <-  "0"
+
+    xaxis <- factor(data[,x])
+
+    df <- list(
+      category = data.frame(
+        label = as.character(levels(xaxis))
+      )
+    )
+
+    category <- toJSON(x = df, pretty = TRUE)
+
+    n <- unique(levels(xaxis))
+    df.list <- lapply(1:length(n), function(i){
+      yaxis <- data[data[,x] == n[i],y]
+      stats <- boxplot.stats(yaxis)
+      if(length(stats$out) >= 1){
+        list(
+          value = toString(yaxis[! yaxis %in% unique(stats$out)]),
+          outliers = toString(unique(stats$out))
+        )
+      }
+      else {
+        list(
+          value = toString(yaxis)
+        )
+      }
+    })
+
+    if(length(grep(pattern = "outliers", x = df.list)) > 0){
+      showalloutliers <- 1
+    }
+    else {
+      showalloutliers <- 0
+    }
+
+    newlist <- list(
+      list(
+      seriesname = y,
+      data = df.list
+    )
+  )
+
+    dataset <- toJSON(x = newlist, pretty = TRUE, auto_unbox = TRUE)
+  }
+  else {
+    stop("Please select available charts")
+  }
+
+
 #' @examples
 #' library(fusionchartsR)
-#' 
-#'  df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-#' fusionPlot(data = df, type = 'pie2d') %>%
-#'  fusionTheme(theme = "fusion")
-#'   
+#'
+#' # Single
+#' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "pie2d") %>%
+#' fusionTheme(theme = "fusion")
+#'
+#' # Multiple
+#' new.data <- data.frame(
+#' label = rep(x = c(2012:2016), times = 2),
+#' seriesname = c(rep("iOS App Store", 5), rep("Google Play Store", 5)),
+#' values = c(1:10)
+#' )
+#'
+#' new.data %>%
+#' fusionPlot(
+#' x = "label",
+#' y = "values",
+#' col = "seriesname",
+#' type = "mscolumn2d",
+#' ) %>%
+#' fusionTheme(theme = "fusion")
+#'
 
-  if(isTRUE(grepl("px", height))){
-    height <- strsplit(x = height, split = "px")[[1]]
-  }
-  else {
-    height <- height
-  }
-  
-  if(isTRUE(grepl("px", width))){
-    width <- strsplit(x = width, split = "px")[[1]]
-  }
-  else {
-    width <- width
-  }
-  
   # forward options using x
-  x = list(
+  x <- list(
     data = data,
+    categories = category,
+    dataset = dataset,
     type = type,
-    width = width,
-    height = height,
     numberSuffix = numberSuffix,
-    exportEnabled = as.numeric(exportEnabled)
+    showmean = showmean,
+    drawcrossline = drawcrossline,
+    showalloutliers = showalloutliers
     )
 
   # create widget
   widgets <- htmlwidgets::createWidget(
     name = 'fusionPlot',
     x = x,
-    width = NULL,
-    height = NULL,
-    package = 'fusionchartsR',
-    elementId = NULL
+    package = 'fusionchartsR'
   )
-  
+
   widgets %>%
   fusionCaption() %>%
     fusionSubcaption() %>%
@@ -94,7 +213,7 @@ fusionPlot <- function(data, type = "column2d", width = "100%", height = "100%",
     fusionTooltip() %>%
     fusionLogo() %>%
     fusionTheme()
-  
+
 }
 
 
@@ -111,7 +230,7 @@ fusionPlot <- function(data, type = "column2d", width = "100%", height = "100%",
 #' @param env The environment in which to evaluate \code{expr}.
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
-#'   
+#'
 #' @name fusionPlotOutput
 #' @aliases renderfusionPlot
 #'
