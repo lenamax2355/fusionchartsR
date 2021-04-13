@@ -29,11 +29,11 @@
 #' 
 #' @examples
 #' library(fusionchartsR)
-#' 
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-#' fusionPlot(data = df, type = "column2d") %>%
-#'   fusionDiv(divLineColor = "#6699cc", divLineAlpha = "60", divLineDashed = TRUE) %>%
-#'   fusionTheme(theme = "fusion")
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "column2d") %>%
+#' fusionDiv(divLineColor = "#6699cc", divLineAlpha = "60", divLineDashed = TRUE) %>%
+#' fusionTheme(theme = "fusion")
 #'
 #' @export
 fusionDiv <- function(fusionPlot, adjustDiv = FALSE, numDivLines = "5", divLineColor = "#5a5a5a", divLineAlpha = "10", divLineDashed = FALSE,
