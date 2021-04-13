@@ -18,10 +18,6 @@
 #' @export
 fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = NULL) {
 
-  # Roc curve & Survival curve => msstepline !
-
-  # scatter => scatter
-
   singleSeriesChart <- c(
     "column2d",
     "column3d",
