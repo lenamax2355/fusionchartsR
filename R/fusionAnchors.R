@@ -19,13 +19,11 @@
 #' 
 #' @examples
 #' library(fusionchartsR)
-#' 
 #' df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
-#' fusionPlot(data = df, type = "line") %>%
-#'   fusionAnchors(anchorRadius = "6", anchorBorderThickness = "2", 
-#'   anchorBorderColor = "#127fcb", anchorSides = "3", 
-#'   anchorBgColor = "#d3f7ff") %>%
-#'   fusionTheme(theme = "fusion")
+#' df %>%
+#' fusionPlot(x = "label", y = "value", type = "line") %>%
+#' fusionAnchors(anchorRadius = "6", anchorBorderThickness = "2", anchorBorderColor = "#127fcb", anchorSides = "3", anchorBgColor = "#d3f7ff") %>%
+#' fusionTheme(theme = "fusion")
 #'
 #' @export
 fusionAnchors <- function(fusionPlot, drawAnchors = TRUE, showvalues = FALSE, anchorSides =  "0", anchorRadius = "3", anchorAlpha = "100", anchorBorderThickness = "1", 
