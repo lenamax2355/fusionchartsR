@@ -4,10 +4,10 @@
 [![](https://cranlogs.r-pkg.org/badges/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
 ![](https://img.shields.io/badge/github%20version-0.0.2-orange.svg)
 
-## Update - 04/13/2021
+## Update - 04/16/2021
 
-* Adding multiple charts 
-* Adding new features
+* Remake `fusionPlot()`
+* Add new charts (see `available_charts()`)
 * Update examples
 
 ## Installation
