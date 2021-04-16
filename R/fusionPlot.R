@@ -1,10 +1,12 @@
 #' Create new charts
 #'
-#' Main function to make interactive charts
+#' Main function to make interactive charts.
 #' Check all charts at \url{https://www.fusioncharts.com/charts}
+#'
 #'
 #' @import htmlwidgets
 #' @import jsonlite
+#' @importFrom caret confusionMatrix
 #'
 #'
 #' @param data Default dataset to use
@@ -18,37 +20,10 @@
 #' @export
 fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = NULL) {
 
-  singleSeriesChart <- c(
-    "column2d",
-    "column3d",
-    "line",
-    "area2d",
-    "bar2d",
-    "bar3d",
-    "pie2d",
-    "pie3d",
-    "doughnut2d",
-    "doughnut3d",
-    "pareto2d",
-    "funnel"
-    )
-
-  multipleSeriesChart <- c(
-    "mscolumn2d",
-    "stackedcolumn2d",
-    "mscolumn3d",
-    "stackedcolumn3d",
-    "msline",
-    "mssplinearea",
-    "msbar2d",
-    "stackedbar2d",
-    "msbar3d",
-    "stackedbar3d",
-    "overlappedcolumn2d"
-  )
+  charts <- available_charts()
 
 
-  if(type %in% singleSeriesChart){
+  if(type %in% charts[[1]][-c(13,14)]){
 
     # Canceled Multiple series charts components
     drawcrossline <- "0"
@@ -56,6 +31,10 @@ fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = N
     dataset <- NULL
     showmean <- "0"
     showalloutliers <- NULL
+    columns <- NULL
+    rows <- NULL
+    colorrange <- NULL
+    mapbycategory <- "0"
 
     new.data <- data.frame(
       label = factor(data[,x]),
@@ -65,12 +44,16 @@ fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = N
     data <- toJSON(x = new.data, pretty = TRUE)
 
   }
-  else if(type %in% multipleSeriesChart) {
+  else if(type %in% charts[[2]]) {
 
     # Activated components
     drawcrossline <-  "1"
     showmean <- "0"
     showalloutliers <- NULL
+    columns <- NULL
+    rows <- NULL
+    colorrange <- NULL
+    mapbycategory <- "0"
 
     # X-axis values
     xaxis <- factor(data[,x])
@@ -95,10 +78,14 @@ fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = N
     dataset <- toJSON(x = df.list, pretty = TRUE, auto_unbox = TRUE)
 
   }
-  else if(type == "boxandwhisker2d" & is.null(col)){
+  else if(type == "boxandwhisker2d"){
 
     showmean <- "1"
     drawcrossline <-  "0"
+    columns <- NULL
+    rows <- NULL
+    colorrange <- NULL
+    mapbycategory <- "0"
 
     xaxis <- factor(data[,x])
 
@@ -143,8 +130,68 @@ fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = N
 
     dataset <- toJSON(x = newlist, pretty = TRUE, auto_unbox = TRUE)
   }
+  else if(type == "confusionMatrix"){
+    
+    type <- "heatmap"
+    
+    drawcrossline <-  "0"
+    showmean <- "0"
+    showalloutliers <- NULL
+    category <- NULL
+    mapbycategory <- "1"
+    
+    color <- list(
+      gradient = "0",
+      color = data.frame(
+        code = c("#6da81e", "#e24b1a"),
+        minvalue = c("0", "0"),
+        maxvalue = c("Infinity", "Infinity"),
+        label = c("Good", "Bad")
+      )
+    )
+    
+    colorrange <- toJSON(x = color, pretty = TRUE, auto_unbox = TRUE)
+    
+    column01 <- list(
+      column = data.frame(
+        id = c("Pos", "Neg"),
+        label = c("Positive", "Negative")
+      )
+    )
+    
+    columns <- toJSON(x = column01, pretty = TRUE)
+    
+    row01 <- list(
+      row = data.frame(
+        id = c("tr","fa"),
+        label = c("Positive", "Negative")
+      )
+    )
+    
+    rows <- toJSON(x = row01, pretty = TRUE)
+    
+    # Dataset
+    truth <- data[,x]
+    pred <- data[,y]
+    xtab <- table(pred, truth)
+    mtx <- confusionMatrix(xtab)
+    
+    data01 <- list(
+      list(
+        data = data.frame(
+          rowid = c("tr","tr", "fa", "fa"),
+          columnid = c("Pos", "Neg", "Pos", "Neg"),
+          displayvalue = as.character(c(mtx$table[1,], mtx$table[2,])),
+          colorrangelabel = c("Good", "Bad","Bad", "Good")
+        )
+      )
+    )
+    
+    dataset <- toJSON(x = data01, pretty = TRUE, auto_unbox = TRUE)
+
+  }
   else {
-    stop("Please select available charts")
+    stop("Please select available charts. See `available_charts()`")
   }
 
 
@@ -183,7 +230,11 @@ fusionPlot <- function(data,x, y,col = NULL, type = "column2d", numberSuffix = N
     numberSuffix = numberSuffix,
     showmean = showmean,
     drawcrossline = drawcrossline,
-    showalloutliers = showalloutliers
+    showalloutliers = showalloutliers,
+    columns = columns,
+    rows = rows,
+    colorrange = colorrange,
+    mapbycategory = mapbycategory
     )
 
   # create widget
