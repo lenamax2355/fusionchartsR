@@ -4,11 +4,10 @@
 [![](https://cranlogs.r-pkg.org/badges/fusionchartsR)](https://cran.r-project.org/package=fusionchartsR)
 ![](https://img.shields.io/badge/github%20version-0.0.2-green.svg)
 
-## Update - 04/16/2021
+## Bugs
 
-* Remake `fusionPlot()`
-* Add new charts (see `available_charts()`)
-* Update examples
+* Trouble with mising values using `fusionplot(..., type = "boxandwhisker2d")`
+* ...
 
 ## Installation
 
