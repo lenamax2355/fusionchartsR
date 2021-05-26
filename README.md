@@ -7,7 +7,6 @@
 ## Bugs
 
 * Trouble with mising values using `fusionplot(..., type = "boxandwhisker2d")`
-* ...
 
 ## Installation
 
