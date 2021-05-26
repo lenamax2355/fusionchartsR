@@ -30,6 +30,11 @@ devtools::install_github("alexym1/fusionchartsR")
 ```{r}
 library(fusionchartsR)
 library(shiny)
+
+df <- data.frame(label = c("Venezuela", "Saudi", "Canada", "Russia"), value = c(290, 260,180, 115))
+df %>%
+fusionPlot(x = "label", y = "value", type = "pie2d") %>%
+fusionTheme(theme = "gammel")
 ```
 
 ## Ressources
