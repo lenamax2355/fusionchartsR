@@ -30,7 +30,6 @@ devtools::install_github("alexym1/fusionchartsR")
 ```{r}
 library(fusionchartsR)
 library(shiny)
-runDemo()
 ```
 
 ## Ressources
